@@ -1,0 +1,1 @@
+{Mood Indigo,Radiance,Aakar,Technovanza} = 2

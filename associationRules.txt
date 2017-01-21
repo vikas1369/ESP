@@ -1,0 +1,18 @@
+Technovanza => Aakar = 83.33%
+Aakar => Technovanza = 83.33%
+Radiance => Technovanza = 80%
+Radiance => Aakar = 80%
+Radiance => Mood Indigo = 80%
+Radiance,Aakar => Technovanza = 75%
+Radiance,Aakar => Mood Indigo = 75%
+Mood Indigo => Technovanza = 80%
+Mood Indigo => Aakar = 80%
+Mood Indigo => Radiance = 80%
+Mood Indigo,Aakar => Technovanza = 75%
+Mood Indigo,Aakar => Radiance = 75%
+Mood Indigo,Radiance => Technovanza = 75%
+Mood Indigo,Radiance => Aakar = 75%
+Radiance,Technovanza => Aakar = 75%
+Radiance,Technovanza => Mood Indigo = 75%
+Mood Indigo,Technovanza => Aakar = 75%
+Mood Indigo,Technovanza => Radiance = 75%
