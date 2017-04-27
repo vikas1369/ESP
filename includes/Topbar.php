@@ -15,5 +15,5 @@
     </ul>
     </div>
 </nav>
-<img src="img/12.jpg" class="img-fluid" width="100%"><br><br>
+<img src="img/3.jpg" class="img-fluid" width="100%"><br><br>
 </div>

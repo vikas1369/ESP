@@ -1,32 +1,28 @@
-    <?php
-session_start(); 
+<?php
+session_start();
 if(isset($_SESSION['user'])!="")
 {
 	header("Location: home.php");
 }?>
 <?php include "includes/header.php"?>
 <?php include "functions.php"?>
-
-<?php 
+<?php
     checkLogin();
     ?>
-
  <div class="container">
- <div class="col-sm-6">
- 
-   
-    <h1>AN EVENT SHARING PORTAL</h1>
+ <div class="col-sm-6 col-md-offset-4 col-lg-3">
+    <h2>Admin Portal</h2>
 <form method="post">
 <table class="table table-bordered">
     <tr><td>
        <div class="form-group">
-        <label for="username">Enter Username</label>
+        <label for="username">Username</label>
     <input type="text" name="username" required class="form-control">
     </div>
     </td></tr>
     <tr><td>
        <div class="form-group">
-        <label for="password">Enter Password</label>
+        <label for="password">Password</label>
     <input type="password" name="password" required class="form-control">
         </div>
     </td></tr>
@@ -42,7 +38,5 @@ if(isset($_SESSION['user'])!="")
 </table>
 </form>
      </div>
-     
 </div>
-
 <?php include "includes/footer.php"?>

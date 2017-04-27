@@ -1,4 +1,4 @@
-    <?php 
+    <?php
 session_start();
 if(isset($_SESSION['user'])!="")
 {
@@ -10,83 +10,83 @@ include "includes/header.php"?>
            var flag=0;
            function checkfname(){
             var letters = /^[A-Za-z]+$/;
-            if(document.myform.fname.value == ""){   
+            if(document.myform.fname.value == ""){
                 document.getElementById('helpBlock1').innerHTML = 'Please Enter the First Name';
-                flag=1;      
+                flag=1;
             }
                else if(document.myform.fname.value.length>20){
                    document.getElementById('helpBlock1').innerHTML = 'First Name should be of Maximun 20 characters';
-                   flag=1;  
+                   flag=1;
                }
                else if(!document.myform.fname.value.match(letters)){
                    document.getElementById('helpBlock1').innerHTML = 'First Name should only contain alphabet characters';
-                   flag=1;  
+                   flag=1;
                }
 
            }
            function checklname(){
                var letters = /^[A-Za-z]+$/;
-              if(document.myform.lname.value == ""){  
+              if(document.myform.lname.value == ""){
                 document.getElementById('helpBlock2').innerHTML = 'Please Enter the Last Name';
                 flag=1;
-              } 
+              }
                else if(document.myform.lname.value.length>20){
                    document.getElementById('helpBlock2').innerHTML = 'Last Name should be of Maximun 20 characters';
-                   flag=1;  
+                   flag=1;
                }
                else if(!document.myform.lname.value.match(letters)){
                    document.getElementById('helpBlock2').innerHTML = 'Last Name should only contain alphabet characters';
-                   flag=1;  
+                   flag=1;
                }
            }
            function checkemaild(){
                var email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-               if(document.myform.emailid.value == ""){ 
+               if(document.myform.emailid.value == ""){
                 document.getElementById('helpBlock3').innerHTML = 'Please Enter the Email Id';
-               flag=1;       
-                } 
-               else if(!document.myform.emailid.value.match(email)){ 
+               flag=1;
+                }
+               else if(!document.myform.emailid.value.match(email)){
                 document.getElementById('helpBlock3').innerHTML = 'Please Enter the Email Id in proper format';
-               flag=1;       
-                } 
+               flag=1;
+                }
 
            }
            function checkmobile(){
                var mobileno = /^[0-9]{10}$/;
-           if(document.myform.mobileno.value == ""){ 
+           if(document.myform.mobileno.value == ""){
                 document.getElementById('helpBlock4').innerHTML = 'Please Enter the Mobile No.';
-               flag=1;      
+               flag=1;
             }
-            else if(!document.myform.mobileno.value.match(mobileno)){ 
+            else if(!document.myform.mobileno.value.match(mobileno)){
                 document.getElementById('helpBlock4').innerHTML = 'Please Enter 10 digit mobile number';
-               flag=1;      
-            }  
+               flag=1;
+            }
            }
            function checkusername(){
-               var alphanum = /^[A-Za-z0-9]+$/; 
-               if(document.myform.username.value == ""){ 
+               var alphanum = /^[A-Za-z0-9]+$/;
+               if(document.myform.username.value == ""){
                 document.getElementById('helpBlock5').innerHTML = 'Please Enter the Username';
-               flag=1;       
+               flag=1;
             }
-               else if(!document.myform.username.value.match(alphanum)){ 
+               else if(!document.myform.username.value.match(alphanum)){
                 document.getElementById('helpBlock5').innerHTML = 'Please Enter only alphanumberic characters';
-               flag=1;       
+               flag=1;
             }
            }
            function checkpassword(){
-               if(document.myform.password.value == ""){ 
+               if(document.myform.password.value == ""){
                 document.getElementById('helpBlock6').innerHTML = 'Please Enter the Password';
-               flag=1;       
+               flag=1;
             }
            }
            function checkrpassword(){
-               if(document.myform.rpassword.value == ""){ 
+               if(document.myform.rpassword.value == ""){
                 document.getElementById('helpBlock7').innerHTML = 'Please Re-enter the password';
-               flag=1;     
+               flag=1;
             }
                else if(document.myform.password.value!=document.myform.rpassword.value){
                    document.getElementById('helpBlock7').innerHTML = 'Passwords do not match';
-               flag=1;  
+               flag=1;
                }
            }
            function checkCaptcha(){
@@ -94,9 +94,9 @@ include "includes/header.php"?>
                 var fnum=document.myform.firstNumber.value;
                 var snum=document.myform.secondNumber.value;
                 total=Number(fnum)+Number(snum);
-               if(document.myform.captchaResult.value == ""){ 
+               if(document.myform.captchaResult.value == ""){
                     document.getElementById('helpBlock8').innerHTML = 'Please Enter the value for Captcha';
-                    flag=1;     
+                    flag=1;
                 }
                 else if(total!=ctotal){
                     document.getElementById('helpBlock8').innerHTML = 'Please Enter the values for Captcha Correctly';
@@ -126,7 +126,7 @@ include "includes/header.php"?>
                   else{
                       return true;
                   }
-              } 
+              }
 
     </script>
         <div class="container">
@@ -141,7 +141,7 @@ include "includes/header.php"?>
                   <table class="table table-bordered">
                   <tr><td>
                    <div class="form-group">
-                        <label for="f">Enter First Name</label>
+                        <label for="fname">Enter First Name</label>
                         <input type="text" name="fname" class="form-control">
                         <div class="form-group has-error">
                         <span id="helpBlock1" class="help-block"></span>
@@ -203,7 +203,7 @@ include "includes/header.php"?>
                     </div>
                         </td>
                       </tr>
-                           
+
                            <tr><td>
                               <div class="form-group">
                               <?php
@@ -232,7 +232,7 @@ $min_number = 1;
                                 <tr><td>
                     <a href="index.php">Sign In Here</a>
                                     </td></tr>
-                            
+
                     </table>
                 </form>
             </div>

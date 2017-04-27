@@ -6,14 +6,14 @@ font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 width:50%;
 border-collapse:collapse;
 }
-#results td, #results th 
+#results td, #results th
 {
 font-size:1em;
 border:1px solid #293d3d;
 padding:3px 7px 2px 7px;
-    width:35%; 
+    width:35%;
 }
-#results th 
+#results th
 {
 font-size:1.1em;
 text-align:left;
@@ -34,7 +34,7 @@ function doRegistration(){
                 $mobileno=$_POST['mobileno'];
                 $username=$_POST['username'];
                 $password=$_POST['password'];
-                $code=md5(uniqid(rand())); 
+                $code=md5(uniqid(rand()));
                 $query2="SELECT * FROM members WHERE username='$username'";
                 $result2=mysqli_query($connection,$query2);
                 $count=mysqli_num_rows($result2);
@@ -53,7 +53,7 @@ function doRegistration(){
                          echo "Your Registration Completed Successfully";
                          sendMail($code);
                     }
-                   
+
                 }
     }
 }
@@ -110,12 +110,12 @@ function checkLogin(){
     if(isset($_POST['login'])){
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $query= "SELECT * FROM members WHERE username='$username' and password='$password'"; 
-    $result=mysqli_query($connection,$query );    
+    $query= "SELECT * FROM admin WHERE username='$username' and password='$password'";
+    $result=mysqli_query($connection,$query );
     $count = mysqli_num_rows($result);
     if($count==1){
         $_SESSION['user'] = $username;
-        header("Location:/home.php");
+        header("Location:/FPSWEB/home.php");
         //die("Query Failed".mysqli_error($connection));
     }
     else{
@@ -124,41 +124,26 @@ function checkLogin(){
 }
 }
 
-function addNewEvent(){
+function addNewStudent(){
     global $connection;
 if(isset($_POST['add'])){
-    $address=$_POST['address'];
-    $eventname=$_POST['eventname'];
-    //Code for making date in MySQL format
-    $date=$_POST['date'];
-    $xplode=explode('-',$date);
-    $year=$xplode[0];
-    $month=$xplode[1];
-    $mt=$xplode[2];
-    $day=substr($mt,0,2);
-    $hour=substr($mt,3,2);
-    $minute=substr($mt,6,2);
-    $time="$hour:$minute:00";
-    $date="$year-$month-$day $time";
-    //End of Code for making date in MySQL format
-    $locality=$_POST['locality'];
-    $city=$_POST['city'];
-    $mn=$_POST['mobileno'];
-    $username=$_SESSION['user'];
-    if($_POST['mobileno']==""){
-        $query="INSERT INTO address(username,eventname,date,address, locality, city) ";
-        $query .="VALUES('$username','$eventname','$date','$address','$locality','$city')";
-    }
-    else{
-        $query="INSERT INTO address(username,eventname,date,address, locality, city,mobile) ";
-        $query .="VALUES('$username','$eventname','$date','$address','$locality','$city','$mn')";
-    }
+    $fpsid=$_POST['fpsid'];
+    $studentid=$_POST['studentid'];
+    $name=$_POST['name'];
+    $emailid=$_POST['emailid'];
+    $class=$_POST['class'];
+    $mobileno=$_POST['mobileno'];
+    $pmobileno=$_POST['pmobileno'];
+    $query="INSERT INTO Students(Studentid,Name, Emailid,FPSid, Class, Mobileno, PMobileno) ";
+    $query .="VALUES('$studentid','$name','$emailid','$fpsid','$class','$mobileno','$pmobileno')";
     $result=mysqli_query($connection,$query);
     if(!$result){
+        echo "Error";
         die("Query Failed".mysqli_error($connection));
+
     }
     else{
-        echo "New Event Added Successfully";
+        echo "Record for Student Id: ".$studentid." added successfully";
     }
 }
 }
@@ -181,7 +166,7 @@ if(isset($_POST['submit'])){
         else{
             echo "<br>Total Events found for this query are :".$rowcount."<br><br>";
         }
-        
+
         while($row=mysqli_fetch_assoc($result)){
             $address=$row['address'];
             $eventname=$row['eventname'];
@@ -239,7 +224,7 @@ function sendPassword(){
         $username=$_POST['username'];
         $query="SELECT emailid,password FROM members WHERE username='$username'";
         $result=mysqli_query($connection,$query);
-        if($result){    
+        if($result){
             $count=mysqli_num_rows($result);
             if($count==1){
                 $row=mysqli_fetch_assoc($result);
@@ -255,7 +240,7 @@ function sendPassword(){
             echo "<br>Cannot send password to your e-mail address";
         }
             }
-            
+
             else{
             echo "Username doesn't exist";
         }
@@ -283,7 +268,7 @@ $Apriori = new Apriori();
 $Apriori->setMaxScan(20);       //Scan 2, 3, ...
 $Apriori->setMinSup(2);         //Minimum support 1, 2, 3, ...
 $Apriori->setMinConf(75);       //Minimum confidence - Percent 1, 2, ..., 100
-$Apriori->setDelimiter(',');    //Delimiter 
+$Apriori->setDelimiter(',');    //Delimiter
      global $connection;
     $dataset   = array();
     $query='SELECT username FROM members';
@@ -307,8 +292,8 @@ $Apriori->setDelimiter(',');    //Delimiter
         }
     }
 $Apriori->process($dataset);
-    
-//Recommendation Here 
+
+//Recommendation Here
 $username=$_SESSION['user'];
      $stack=array();
                 $query1="SELECT event FROM transaction WHERE username='$username'";
@@ -318,22 +303,22 @@ $username=$_SESSION['user'];
         else{
             $myevent='';
             $count=1;
-           
+
             while($row=mysqli_fetch_array($result1)){
                 $eventname=$row['event'];
                 array_push($stack,$eventname);
                 //$a=$row;
-            }    
+            }
         }
-    
+
     $powerset = powerSet($stack);
     $final_suggest=array();
-    
+
  foreach($powerset as $set){
      $myevent='';
      $numberinsert=count($set);
      if($numberinsert==1){
-          $myevent=array_values($set)[0]; 
+          $myevent=array_values($set)[0];
      }
      else{
          $count=1;
@@ -345,7 +330,7 @@ $username=$_SESSION['user'];
                      $myevent=$myevent.','.$value;
                 }
                 $count++;
-             
+
          }
      }
     //echo 'My events '.$myevent.'<br>';
@@ -353,7 +338,7 @@ $username=$_SESSION['user'];
      foreach($rules as $a => $arr)
           {
              foreach($arr as $b => $conf)
-                { 
+                {
                    if($a==$myevent){
                        $value=explode(',',$b);
                        foreach($value as $val){
@@ -370,7 +355,7 @@ $username=$_SESSION['user'];
     unset($result[$key]);
             //echo "Deleted ".$element;
 }
-        
+
     }
     echo "Suggested event/events for you<br>";
     if( empty( $result ) )
@@ -384,20 +369,20 @@ $username=$_SESSION['user'];
     echo "<br><br>";
 }
     }
-function powerSet($in,$minLength = 1) { 
-   $count = count($in); 
-   $members = pow(2,$count); 
-   $return = array(); 
-   for ($i = 0; $i < $members; $i++) { 
-      $b = sprintf("%0".$count."b",$i); 
-      $out = array(); 
-      for ($j = 0; $j < $count; $j++) { 
-         if ($b{$j} == '1') $out[] = $in[$j]; 
-      } 
-      if (count($out) >= $minLength) { 
-         $return[] = $out; 
-      } 
-   } 
-   return $return; 
+function powerSet($in,$minLength = 1) {
+   $count = count($in);
+   $members = pow(2,$count);
+   $return = array();
+   for ($i = 0; $i < $members; $i++) {
+      $b = sprintf("%0".$count."b",$i);
+      $out = array();
+      for ($j = 0; $j < $count; $j++) {
+         if ($b{$j} == '1') $out[] = $in[$j];
+      }
+      if (count($out) >= $minLength) {
+         $return[] = $out;
+      }
+   }
+   return $return;
 }
 ?>
